@@ -1,6 +1,9 @@
 #region Usings
 using UnityEngine;
 using System.Collections;
+using Skahal.Tweening;
+
+
 #endregion
 
 namespace Skahal.Camera
