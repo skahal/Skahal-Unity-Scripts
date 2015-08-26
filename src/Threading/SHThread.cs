@@ -24,6 +24,15 @@ namespace Skahal.Threading
 		}
 
 		/// <summary>
+		/// Start the specified action in parallel.
+		/// </summary>
+		public static void StartEndOfFrame (Action action)
+		{
+			ValidateTimeScale ();	
+			SH.StartCoroutine (RunEndOfFrame(action));
+		}
+
+		/// <summary>
 		/// Start the specified actions in parallel
 		/// </summary>
 		public static void Start (float delay, params Action[] actions)
@@ -94,6 +103,17 @@ namespace Skahal.Threading
 		{
 			yield return new WaitForSeconds (delay);
 		
+			try {
+				action ();
+			} catch (Exception ex) {
+				Debug.LogWarning ("SHThread.Start: error while executing action - " + ex.Message);
+			}
+		}
+
+		private static IEnumerator RunEndOfFrame (Action action)
+		{
+			yield return new WaitForEndOfFrame();
+
 			try {
 				action ();
 			} catch (Exception ex) {
