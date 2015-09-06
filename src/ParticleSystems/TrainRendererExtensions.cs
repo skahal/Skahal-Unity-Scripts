@@ -20,10 +20,12 @@ namespace Skahal.ParticleSystems
 		/// <returns></returns>
 		static IEnumerator ResetTrail (TrailRenderer trail)
 		{
-			var trailTime = trail.time;
-			trail.time = 0;
-			yield return 0;
-			trail.time = trailTime;
+			if (trail.time > 0) {
+				var trailTime = trail.time;
+				trail.time = 0;
+				yield return 0;
+				trail.time = trailTime;
+			}
 		}
 	}
 }
