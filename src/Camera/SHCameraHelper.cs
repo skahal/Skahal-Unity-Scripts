@@ -53,5 +53,31 @@ namespace Skahal.Camera
 		{
 			Shake(UnityEngine.Camera.main, 2f, new Vector3 (1f, 1f, 1f));
 		}
+
+		/// <summary>
+		/// Gets the camera left border in world position
+		/// </summary>
+		/// <returns>The left border.</returns>
+		/// <param name="camera">Camera.</param>
+		public static float GetLeftBorder(UnityEngine.Camera camera = null) 
+		{
+			camera = camera ?? UnityEngine.Camera.main;
+
+			var dist = (Vector3.zero - camera.transform.position).z;
+			return camera.ViewportToWorldPoint(new Vector3(0,0,dist)).x;
+		}
+
+		/// <summary>
+		/// Gets the camera right border in world position
+		/// </summary>
+		/// <returns>The left border.</returns>
+		/// <param name="camera">Camera.</param>
+		public static float GetRightBorder(UnityEngine.Camera camera = null) 
+		{
+			camera = camera ?? UnityEngine.Camera.main;
+
+			var dist = (Vector3.zero - camera.transform.position).z;
+			return camera.ViewportToWorldPoint(new Vector3(1,0,dist)).x;
+		}
 	}
 }
