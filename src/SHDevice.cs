@@ -27,7 +27,8 @@ public enum SHDeviceGeneration
 	Mac,
 	Windows,
 	iPad3Gen,
-	Web
+	Web,
+	Linux
 }
 
 /// <summary>
@@ -43,7 +44,8 @@ public enum SHDeviceFamily
 	Editor,
 	Mac,
 	Windows, 
-	Web
+	Web,
+	Linux
 }
 #endregion
 
@@ -155,6 +157,8 @@ public static class SHDevice
 			return SHDeviceGeneration.Windows;
 #elif UNITY_WEBPLAYER
 			return SHDeviceGeneration.Web;
+#elif UNITY_STANDALONE_LINUX
+			return SHDeviceGeneration.Linux;
 #endif
 			}
 		}
@@ -202,6 +206,9 @@ public static class SHDevice
 				
 			case SHDeviceGeneration.Web:
 				return SHDeviceFamily.Web;
+
+			case SHDeviceGeneration.Linux:
+				return SHDeviceFamily.Linux;
 				
 			default:
 				return SHDeviceFamily.Unknown;
