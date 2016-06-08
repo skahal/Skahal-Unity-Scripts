@@ -6,22 +6,48 @@ using Skahal.Infrastructure.Framework.Repositories;
 using UnityEngine;
 using System.Collections.Generic;
 using Skahal.Serialization;
+using Skahal.Logging;
 
 namespace Skahal.Infrastructure.Repositories
 {
-	public abstract class PlayerPrefsRepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot
+	public abstract class PlayerPrefsRepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot, new()
 	{
 		#region Methods
 		public virtual IQueryable<TEntity> All ()
 		{
-			var allIds = GetAllIds ();
+			var allIds = GetAllIds ();            
+
 			var result = new List<TEntity> ();
 			
 			foreach (var id in allIds) {
-				if (!String.IsNullOrEmpty (id)) {
-					var r = SHSerializer.DeserializeFromString<TEntity> (PlayerPrefs.GetString(GetKey (long.Parse(id))));
-					result.Add(r);
-				}			
+                var longId = long.Parse(id);
+                var key = GetKey(longId);
+                var rawValue = PlayerPrefs.GetString(key);
+
+                Debug.LogFormat("Deserializing entity with key {0}. Raw value: '{1}'", key, rawValue);
+
+                TEntity entity;
+
+                if (String.IsNullOrEmpty(rawValue))
+                {
+                    entity = new TEntity()
+                    {
+                        Id = longId
+                    };
+                }
+                else
+                {
+                    try
+                    {
+                        entity = SHSerializer.DeserializeFromString<TEntity>(rawValue);
+                    }
+                    catch(FormatException ex)
+                    {
+                        throw new FormatException(String.Format("Error trying to deserialize value key '{0}' with raw value: {1}", key, rawValue), ex);
+                    }
+                }
+
+				result.Add(entity);
 			}
 				
 			return result.AsQueryable();
@@ -50,9 +76,17 @@ namespace Skahal.Infrastructure.Repositories
 		public virtual void Modify (TEntity entity)
 		{
 			var serialized = SHSerializer.SerializeToString (entity);
+
 			var key = GetKey (entity.Id);
+
+            SHLog.Debug("Serializing key '{0}' with raw value: '{1}'", key, serialized);
 			PlayerPrefs.SetString (key, serialized);
 		}
+
+        public void Clear()
+        {
+            PlayerPrefs.DeleteKey(GetAllIdsKey());
+        }
 		#endregion	
 		
 		#region Fields
@@ -85,7 +119,12 @@ namespace Skahal.Infrastructure.Repositories
 		
 		private string[] GetAllIds()
 		{
-			return PlayerPrefs.GetString (GetAllIdsKey(), "").Split(',');
+            var ids = PlayerPrefs.GetString(GetAllIdsKey(), "");
+            SHLog.Debug("Ids '{0}' found on {1}.", ids, GetType().Name);
+
+            return ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(id => !String.IsNullOrEmpty(id.Trim()))
+                .ToArray();
 		}
 		#endregion
 	}
