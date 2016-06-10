@@ -22,7 +22,7 @@ namespace Skahal.Logging
 		/// </param>
 		public void WriteDebug (string message, params object[] args)
 		{
-			UnityEngine.Debug.Log ("[DEBUG]" + String.Format (message, args));
+			UnityEngine.Debug.Log (BuildMessage("DEBUG", message, args));
 		}
 		
 		/// <summary>
@@ -36,7 +36,7 @@ namespace Skahal.Logging
 		/// </param>
 		public void WriteWarning (string message, params object[] args)
 		{
-			UnityEngine.Debug.LogWarning ("[WARNING]" + String.Format (message, args));
+            UnityEngine.Debug.LogWarning(BuildMessage("WARNING", message, args));            
 		}
 		
 		/// <summary>
@@ -50,7 +50,7 @@ namespace Skahal.Logging
 		/// </param>
 		public void WriteError (string message, params object[] args)
 		{
-			UnityEngine.Debug.LogError ("[ERROR]" + String.Format (message, args));
+            UnityEngine.Debug.LogError(BuildMessage("ERROR", message, args));
 		}
 		
 		/// <summary>
@@ -61,8 +61,13 @@ namespace Skahal.Logging
 		/// </param>
 		public void WriteError(Exception ex)
 		{
-			WriteError ("[ERROR] {0}", ex.Message);
+			WriteError (ex.Message);
 		}
+
+        private string BuildMessage(string level, string message, params object[] args)
+        {
+            return String.Format("[{0}] {1:dd/MM/yy HH:mm} {2}", level, DateTime.Now, String.Format(message, args));
+        }
 		#endregion
 	}
 }
