@@ -34,6 +34,18 @@ public static class TransformHelper
 		p.x = x;
 		transform.position = p;
 	}
+		
+	/// <summary>
+	/// Sets the position z.
+	/// </summary>
+	/// <param name="transform">Transform.</param>
+	/// <param name="z">The z coordinate.</param>
+	public static void SetPositionZ (this Transform transform, float z)
+	{
+		Vector3 p = transform.position;
+		p.z = z;
+		transform.position = p;
+	}
 	
 	/// <summary>
 	/// Sets the local position x.
