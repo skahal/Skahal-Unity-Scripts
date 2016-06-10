@@ -1,17 +1,16 @@
 ﻿#region Usings
 using UnityEngine;
+using System.Linq;
 #endregion
 
 namespace Skahal.Common
 {
 	/// <summary>
-	/// Utilitário para geração de aleatórios.
+	/// Utility to generate random subjects.
 	/// </summary>
 	public static class SHRandomHelper
 	{
-	    #region Métodos
-	
-	    #region Vetores
+	    #region Methods	    
 	    /// <summary>
 	    /// Gera um Vector3 aleatório.
 	    /// </summary>
@@ -43,16 +42,16 @@ namespace Skahal.Common
 	            Random.Range(minY, maxY),
 	            Random.Range(minZ, maxZ));
 	    }
-	    #endregion
-		
-		#region Booleano
-		public static bool NextBool()
+      
+        /// <summary>
+        /// Generates a random boolean.
+        /// </summary>
+        /// <returns>The boolean value.</returns>
+        public static bool NextBool()
 		{
 			return Random.Range(0, 2) == 0;
 		}
-		#endregion
-	
-	    #region Cores
+
 	    /// <summary>
 	    /// Gera um Color aleatório.
 	    /// </summary>
@@ -61,7 +60,27 @@ namespace Skahal.Common
 	    {
 	        return new Color(Random.value, Random.value, Random.value);
 	    }
-	    #endregion
+
+        /// <summary>
+        /// Generates a random enum value
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <returns>The enum value.</returns>
+        /// <exception cref="System.ArgumentException">TEnum must be an enumerated type</exception>
+        public static TEnum NextEnum<TEnum>()
+            where TEnum: struct, System.IConvertible
+        {
+            var enumType = typeof(TEnum);
+
+            if (!enumType.IsEnum)
+            {
+                throw new System.ArgumentException("TEnum must be an enumerated type");
+            }
+
+            var values = System.Enum.GetValues(enumType).Cast<TEnum>().ToArray();
+            
+            return values[Random.Range(0, values.Length)];
+        }
 	    #endregion
 	}
 }
