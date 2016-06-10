@@ -16,6 +16,8 @@ namespace Skahal.Threading
 
 		/// <summary>
 		/// Start the specified action in parallel.
+        /// <param name="delay">The deelay, in seconds, to start the action.</param>
+        /// <param name="action">The action to be executed.</param>
 		/// </summary>
 		public static void Start (float delay, Action action)
 		{
