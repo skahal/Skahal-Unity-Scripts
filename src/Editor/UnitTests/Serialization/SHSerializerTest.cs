@@ -5,6 +5,7 @@ using Skahal.Serialization;
 
 namespace Skahal.Serialization.UnitTest
 {
+    [Category("Serialization")]
     public class SHSerializerTest
     {
         [Test]

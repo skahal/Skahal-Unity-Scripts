@@ -5,7 +5,8 @@ using System.Text;
 using NUnit.Framework;
 
 namespace Shakal.Text.UnitTests
-{
+{    
+    [Category("Text")]
     public class StringHelperTest
     {
         [Test]
