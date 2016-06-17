@@ -20,7 +20,7 @@ namespace Skahal.Logging
 		/// <param name='args'>
 		/// Arguments.
 		/// </param>
-		public void WriteDebug (string message, params object[] args)
+		public void Debug (string message, params object[] args)
 		{
 			UnityEngine.Debug.Log (BuildMessage("DEBUG", message, args));
 		}
@@ -34,7 +34,7 @@ namespace Skahal.Logging
 		/// <param name='args'>
 		/// Arguments.
 		/// </param>
-		public void WriteWarning (string message, params object[] args)
+		public void Warning (string message, params object[] args)
 		{
             UnityEngine.Debug.LogWarning(BuildMessage("WARNING", message, args));            
 		}
@@ -48,7 +48,7 @@ namespace Skahal.Logging
 		/// <param name='args'>
 		/// Arguments.
 		/// </param>
-		public void WriteError (string message, params object[] args)
+		public void Error (string message, params object[] args)
 		{
             UnityEngine.Debug.LogError(BuildMessage("ERROR", message, args));
 		}
@@ -59,9 +59,9 @@ namespace Skahal.Logging
 		/// <param name='ex'>
 		/// Exception.
 		/// </param>
-		public void WriteError(Exception ex)
+		public void Error(Exception ex)
 		{
-			WriteError (ex.Message);
+			Error (ex.Message);
 		}
 
         private string BuildMessage(string level, string message, params object[] args)

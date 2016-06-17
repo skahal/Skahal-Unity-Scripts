@@ -19,7 +19,7 @@ namespace Skahal.Logging
 		/// <param name='args'>
 		/// Arguments.
 		/// </param>
-		void WriteDebug(string message, params object[] args);
+		void Debug(string message, params object[] args);
 		
 		/// <summary>
 		/// Writes the warning log level message.
@@ -30,7 +30,7 @@ namespace Skahal.Logging
 		/// <param name='args'>
 		/// Arguments.
 		/// </param>
-		void WriteWarning(string message, params object[] args);
+		void Warning(string message, params object[] args);
 		
 		/// <summary>
 		/// Writes the error log level message.
@@ -41,7 +41,7 @@ namespace Skahal.Logging
 		/// <param name='args'>
 		/// Arguments.
 		/// </param>
-		void WriteError(string message, params object[] args);
+		void Error(string message, params object[] args);
 		
 		/// <summary>
 		/// Writes the error log level message.
@@ -49,7 +49,7 @@ namespace Skahal.Logging
 		/// <param name='ex'>
 		/// Exception.
 		/// </param>
-		void WriteError(Exception ex);
+		void Error(Exception ex);
 		#endregion
 	}
 }

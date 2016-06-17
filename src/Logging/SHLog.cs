@@ -11,14 +11,7 @@ namespace Skahal.Logging
 	/// A central point to organize logs.
 	/// </summary>
 	public static class SHLog
-	{
-		#region Fields
-		/// <summary>
-		/// The log strategy.
-		/// </summary>
-		private static ISHLogStrategy s_logStrategy;
-		#endregion
-		
+	{	
 		#region Constructors
 		/// <summary>
 		/// Initializes the <see cref="Skahal.Logging.SHLog"/> class.
@@ -26,28 +19,35 @@ namespace Skahal.Logging
 		static SHLog ()
 		{
 			if (SHDebug.IsDebugBuild) {
-				s_logStrategy = new SHDebugLogStrategy ();
+				LogStrategy = new SHDebugLogStrategy ();
 			} else {
-				s_logStrategy = new SHReleaseLogStrategy ();
+				LogStrategy = new SHReleaseLogStrategy ();
 			}
 				
-			Debug("SHLog: log strategy: {0}", s_logStrategy.GetType());
+			Debug("SHLog: log strategy: {0}", LogStrategy.GetType());
 		}
-		#endregion
-		
-		#region Methods
-		/// <summary>
-		/// Write a debug log level.
-		/// </summary>
-		/// <param name='message'>
-		/// Message.
-		/// </param>
-		/// <param name='args'>
-		/// Arguments.
-		/// </param>
-		public static void Debug (string message, params object[] args)
+        #endregion
+
+        #region Properties        
+        /// <summary>
+        /// Gets the log strategy.
+        /// </summary>
+        public static ISHLogStrategy LogStrategy { get; private set; }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Write a debug log level.
+        /// </summary>
+        /// <param name='message'>
+        /// Message.
+        /// </param>
+        /// <param name='args'>
+        /// Arguments.
+        /// </param>
+        public static void Debug (string message, params object[] args)
 		{
-			s_logStrategy.WriteDebug(message, args);
+			LogStrategy.Debug(message, args);
 		}
 		
 		/// <summary>
@@ -61,7 +61,7 @@ namespace Skahal.Logging
 		/// </param>
 		public static void Warning (string message, params object[] args)
 		{
-			s_logStrategy.WriteWarning(message, args);
+			LogStrategy.Warning(message, args);
 		}
 		
 		/// <summary>
@@ -75,7 +75,7 @@ namespace Skahal.Logging
 		/// </param>
 		public static void Error (string message, params object[] args)
 		{
-			s_logStrategy.WriteError(message, args);
+			LogStrategy.Error(message, args);
 		}
 		
 		/// <summary>
@@ -86,7 +86,7 @@ namespace Skahal.Logging
 		/// </param>
 		public static void Error (Exception ex)
 		{
-			s_logStrategy.WriteError(ex);
+			LogStrategy.Error(ex);
 		}
 		#endregion
 	}
