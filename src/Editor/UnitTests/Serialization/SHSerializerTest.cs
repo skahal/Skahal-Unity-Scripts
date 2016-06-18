@@ -3,7 +3,7 @@ using UnityEditor;
 using NUnit.Framework;
 using Skahal.Serialization;
 
-namespace Skahal.Serialization.UnitTest
+namespace Skahal.Serialization.UnitTests
 {
     [Category("Serialization")]
     public class SHSerializerTest
@@ -36,6 +36,7 @@ namespace Skahal.Serialization.UnitTest
         }
 
         [Test]
+		[Category("Unity")]
         public void SerializeToString_SerializeObjectUsingPlayerPrefs_RightDeserialized()
         {
             var stub = new SerializationTargetStub

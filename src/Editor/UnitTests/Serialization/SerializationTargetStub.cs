@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Skahal.Serialization.UnitTest
+namespace Skahal.Serialization.UnitTests
 {
     [Serializable]
     public class SerializationTargetStub

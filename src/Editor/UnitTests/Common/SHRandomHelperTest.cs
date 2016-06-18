@@ -6,9 +6,10 @@ using Skahal.Common;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Skahal.Common.UnitTest
+namespace Skahal.Common.UnitTests
 {
     [Category("Common")]
+	[Category("Unity")]
     public class SHRandomHelperTest
     {
         [Test]
