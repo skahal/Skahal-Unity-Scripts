@@ -1,7 +1,7 @@
 ﻿namespace Skahal.Infrastructure.Framework.Domain
 {
 	/// <summary>
-	/// Interface de marcação para um aggregate root.
+	/// Aggregate root markup inteface.
 	/// </summary>
 	public interface IAggregateRoot : IEntity 
 	{
