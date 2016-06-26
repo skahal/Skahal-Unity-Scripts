@@ -35,7 +35,7 @@ namespace Skahal.Infrastructure.Framework.Repositories
 		/// Exclui a entidade com o id informado.
 		/// </summary>
 		/// <param name="id">O id da entidade a ser removida.</param>
-		void Delete(int id);
+		void Delete(long id);
 
 		/// <summary>
 		/// Modifica a entidade no repositório.

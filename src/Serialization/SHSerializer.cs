@@ -119,7 +119,6 @@ namespace Skahal.Serialization
 			for (int i = 0; i < length; i++)
 			{
 				var obj = objects[i];
-				//SHLog.Debug("Serializer.SerializeMany - Calling item serializer: " +  obj);
 				serialization[i] = serializeHandler(obj);
 			}
 			
@@ -135,7 +134,6 @@ namespace Skahal.Serialization
 			for (int i = 0; i < length; i++)
 			{
 				var ser = serialization[i];
-				//SHLog.Debug("Serializer.DeserializeMany - Calling item deserializer: " + ser);
 				objects.Add(deserializeHandler(ser));
 			}
 			
