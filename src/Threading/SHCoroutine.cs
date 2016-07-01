@@ -8,9 +8,9 @@ using System.Threading;
 namespace Skahal.Threading
 {
 	/// <summary>
-	/// Threading facilities.
+	/// Coroutine facilities.
 	/// </summary>
-	public static class SHThread
+	public static class SHCoroutine
 	{
 		#region Public methods
 

@@ -27,7 +27,7 @@ public class SHScreenshotHelper : MonoBehaviour
 		
 		SHLog.Debug ("SHScreenshotHelper.TakeScreenshot: {0}", fileName);
 		
-		SHThread.WaitFor (
+		SHCoroutine.WaitFor (
 		() => 
 		{
 			return File.Exists (fileName);	
@@ -51,7 +51,7 @@ public class SHScreenshotHelper : MonoBehaviour
 			var www = new WWW (fileName);
 			var screenshot = new Texture2D (System.Convert.ToInt32 (SHScreen.Width), System.Convert.ToInt32 (SHScreen.Height));
 			
-			SHThread.WaitFor (
+			SHCoroutine.WaitFor (
 			() => 
 			{
 				return www.isDone;	
