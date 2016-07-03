@@ -13,7 +13,6 @@ namespace Skahal
 	public class SH : MonoBehaviour
 	{
 		#region Events
-
 		/// <summary>
 		/// Occurs when application paused.
 		/// </summary>
@@ -23,36 +22,30 @@ namespace Skahal
 		/// Occurs when application resumed.
 		/// </summary>
 		public static event EventHandler ApplicationResumed;
-
 		#endregion
 
 		#region Fields
-
 		private static MonoBehaviour s_script;
-
 		#endregion
 
-		#region Life cycle
-
+		#region Methods
 		void Awake ()
 		{
 			s_script = this;
 			DontDestroyOnLoad (this);
 		}
-
-		#endregion
-
-		#region StartCoroutine
-
-		public static new void StartCoroutine (IEnumerator routine)
+	
+		public static new Coroutine StartCoroutine (IEnumerator routine)
 		{
 			ValidateState ();
-			s_script.StartCoroutine (routine);
+			return s_script.StartCoroutine (routine);
 		}
 
-		#endregion
-
-		#region Sleep
+		public static new void StopCoroutine (Coroutine coroutine)
+		{
+			ValidateState ();
+			s_script.StopCoroutine (coroutine);
+		}
 
 		public static void Sleep (float seconds)
 		{
@@ -64,10 +57,6 @@ namespace Skahal
 		{
 			yield return new WaitForSeconds (seconds);
 		}
-
-		#endregion
-
-		#region Events stuffs
 
 		void OnApplicationPause (bool pause)
 		{
@@ -81,18 +70,13 @@ namespace Skahal
 				ApplicationResumed (s_script, EventArgs.Empty);
 			}
 		}
-
-		#endregion
-
-		#region Helpers
-
+			
 		private static void ValidateState ()
 		{
 			if (s_script == null) {
 				s_script = new GameObject ("SH").AddComponent<SH> ();
 			}
 		}
-
 		#endregion
 	}
 

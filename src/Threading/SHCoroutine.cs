@@ -19,10 +19,19 @@ namespace Skahal.Threading
         /// <param name="delay">The deelay, in seconds, to start the action.</param>
         /// <param name="action">The action to be executed.</param>
 		/// </summary>
-		public static void Start (float delay, Action action)
+		public static Coroutine Start (float delay, Action action)
 		{
 			ValidateTimeScale ();	
-			SH.StartCoroutine (Run (delay, action));
+			return SH.StartCoroutine (Run (delay, action));
+		}
+
+		/// <summary>
+		/// Stop the specified coroutine.
+		/// </summary>
+		/// <param name="coroutine">Coroutine.</param>
+		public static void Stop(Coroutine coroutine)
+		{
+			SH.StopCoroutine (coroutine);
 		}
 
 		/// <summary>
