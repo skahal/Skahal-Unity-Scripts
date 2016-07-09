@@ -1,6 +1,4 @@
-#region Usings
 using System;
-#endregion
 
 namespace Skahal.Logging
 {
