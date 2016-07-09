@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Repositories;
 using UnityEngine;
@@ -10,15 +9,20 @@ using Skahal.Logging;
 
 namespace Skahal.Infrastructure.Repositories
 {
-	public abstract class PlayerPrefsRepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot, new()
+    public abstract class PlayerPrefsRepositoryBase<TEntity> : IRepository<TEntity> where TEntity : IAggregateRoot
 	{
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Skahal.Infrastructure.Repositories.PlayerPrefsRepositoryBase`1"/> class.
-		/// </summary>
-		protected PlayerPrefsRepositoryBase ()
+        #region Fields
+        private Func<TEntity> m_createNew;
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Skahal.Infrastructure.Repositories.PlayerPrefsRepositoryBase`1"/> class.
+        /// </summary>
+        protected PlayerPrefsRepositoryBase (Func<TEntity> createNew)
 		{
-			ClearEmptyEntities = true;
+            m_createNew = createNew;
+            ClearEmptyEntities = true;
 		}
 		#endregion
 
@@ -50,9 +54,8 @@ namespace Skahal.Infrastructure.Repositories
 
 				if (!ClearEmptyEntities && String.IsNullOrEmpty (rawValue))
 				{
-					entity = new TEntity () {
-						Id = longId
-					};
+                    entity = m_createNew();
+                    entity.Id = longId;
 				}
 				else
 				{
