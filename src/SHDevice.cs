@@ -145,9 +145,7 @@ public static class SHDevice
 			}
 			else
 			{
-#if UNITY_EDITOR
-			return SHDeviceGeneration.Editor;
-#elif UNITY_IPHONE
+#if UNITY_IPHONE
 			return (SHDeviceGeneration)System.Enum.Parse(typeof(SHDeviceGeneration), iPhone.generation.ToString(), true);
 #elif UNITY_ANDROID
 			return SHDeviceGeneration.Android;	
@@ -159,6 +157,8 @@ public static class SHDevice
 			return SHDeviceGeneration.Web;
 #elif UNITY_STANDALONE_LINUX
 			return SHDeviceGeneration.Linux;
+#else
+				return SHDeviceGeneration.Editor;
 #endif
 			}
 		}

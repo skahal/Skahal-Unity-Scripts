@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using Skahal.Logging;
-using Zenject;
+//using Zenject;
 
 namespace Skahal
 {
@@ -20,7 +20,7 @@ namespace Skahal
 		/// Construct the object.
 		/// </summary>
 		/// <param name="log">Log.</param>
-		[Inject]
+		//[Inject]
 		public void Construct (ISHLogStrategy log)
 		{
 			Log = log;
