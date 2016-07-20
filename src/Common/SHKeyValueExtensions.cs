@@ -1,6 +1,6 @@
-#region Usings
 using System.Collections.Generic;
-#endregion
+using System.Linq;
+using System;
 
 namespace Skahal.Common
 {
@@ -8,8 +8,7 @@ namespace Skahal.Common
 	/// SHKeyValue's extensions.
 	/// </summary>
 	public static class SHKeyValueExtensions
-	{
-			
+	{			
 		#region Public Methods
 		/// <summary>
 		/// Converts the array of SHKeyValue to a Dictionary<string, string>.
@@ -30,6 +29,17 @@ namespace Skahal.Common
 			}
 				
 			return dictionary;
+		}
+
+		public static TValue Get<TKey, TValue> (this SHKeyValue<TKey, TValue>[] array, TKey key)
+		{
+			var item = array.FirstOrDefault (a => a.Key.Equals(key));
+
+			if (item == null) {
+				return default(TValue);
+			}
+
+			return item.Value;
 		}
 		#endregion
 	}

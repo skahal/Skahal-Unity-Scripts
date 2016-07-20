@@ -9,19 +9,27 @@ namespace Skahal.Common
 	/// A key value for general purpose.
 	/// </summary>
 	[Serializable]
-	public class SHKeyValue
+	public class SHKeyValue<TKey, TValue>
 	{
 		#region Properties
 		/// <summary>
 		/// Gets or sets the key.
 		/// </summary>
-		public string Key;
+		public TKey Key;
 		
 		/// <summary>
 		/// Gets or sets the value.
 		/// </summary>
-		public string Value;
+		public TValue Value;
 		#endregion
 
+	}
+
+	/// <summary>
+	/// A key value for general purpose.
+	/// </summary>
+	[Serializable]
+	public class SHKeyValue : SHKeyValue<string, string>
+	{
 	}
 }
