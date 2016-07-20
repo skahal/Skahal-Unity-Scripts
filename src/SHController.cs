@@ -8,7 +8,7 @@ namespace Skahal
 	/// <summary>
 	/// A controller base class with an associate model.
 	/// </summary>
-	public class SHController<TModel> : SHControllerBase
+	public class SHController<TModel> : SHControllerBase, ISHController<TModel>
 	{
 		#region Fields
 		private TModel m_model;
