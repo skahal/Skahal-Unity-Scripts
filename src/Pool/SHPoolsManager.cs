@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Skahal.Common;
+
+
 #endregion
 
 /// <summary>
@@ -46,21 +49,35 @@ public class SHPoolsManager : MonoBehaviour
 		
       foreach (SHPoolBase p in pools)
       {
-         var goName = p.Name + " pool";
-
-         Transform container = transform.FindChild (goName);
-
-         if (container == null)
-         {
-            container = new GameObject (goName).transform;
-            container.parent = s_instance.transform;
-         }
-
-         p.SetContainer (container);
-         m_pools.Add (p.Name, p);
-         StartCoroutine (p.CreateObjects ());
+			AddPool (p);
       }
    }
+
+	public static void AddPool<TPool>(Action<TPool> poolCreatedCallback) where TPool : SHPoolBase
+	{
+		Throw.AnyNull (new { poolCreatedCallback });
+
+		var pool = s_instance.gameObject.AddComponent<TPool> ();
+		poolCreatedCallback (pool);
+		AddPool (pool);
+	}
+
+	private static void AddPool(SHPoolBase pool)
+	{
+		var goName = pool.Name + " pool";
+
+		Transform container = s_instance.transform.FindChild (goName);
+
+		if (container == null)
+		{
+			container = new GameObject (goName).transform;
+			container.parent = s_instance.transform;
+		}
+
+		pool.SetContainer (container);
+		s_instance.m_pools.Add (pool.Name, pool);
+		s_instance.StartCoroutine (pool.CreateObjects ());
+	}
 	
 	public static GameObject GetGameObject(string poolName)
 	{
