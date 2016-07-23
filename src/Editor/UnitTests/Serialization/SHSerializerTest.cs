@@ -35,6 +35,27 @@ namespace Skahal.Serialization.UnitTests
             Assert.AreEqual("teste", deserialized.Text);
         }
 
+		[Test]
+		public void SerializeVector2_Vector2_RightDeserialized()
+		{
+			var actual = SHSerializer.SerializeVector2(new Vector2(1.2f, 3.4f));
+			var deserialized = SHSerializer.DeserializeVector2(actual);
+
+			Assert.AreEqual(1.2f, deserialized.x);
+			Assert.AreEqual(3.4f, deserialized.y);
+		}
+
+		[Test]
+		public void SerializeVector3_Vector3_RightDeserialized()
+		{
+			var actual = SHSerializer.SerializeVector3(new Vector3(1.2f, 3.4f, 5.6f));
+			var deserialized = SHSerializer.DeserializeVector3(actual);
+
+			Assert.AreEqual(1.2f, deserialized.x);
+			Assert.AreEqual(3.4f, deserialized.y);
+			Assert.AreEqual(5.6f, deserialized.z);
+		}
+
         [Test]
 		[Category("Unity")]
         public void SerializeToString_SerializeObjectUsingPlayerPrefs_RightDeserialized()

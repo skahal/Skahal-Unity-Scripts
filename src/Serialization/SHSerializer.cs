@@ -63,6 +63,29 @@ namespace Skahal.Serialization
 			return DeserializeMany<Vector2>(serialized, DeserializeVector2);
 		}
 		#endregion
+
+		#region Vector3
+		public static string SerializeVector3(Vector3 vector3)
+		{
+			return "{0}#{1}#{2}".With (vector3.x, vector3.y, vector3.z);
+		}
+
+		public static Vector3 DeserializeVector3(string serialized)
+		{
+			var parts = serialized.Split('#');
+			return new Vector3(System.Convert.ToSingle(parts[0]), System.Convert.ToSingle(parts[1]), System.Convert.ToSingle(parts[2]));
+		}
+
+		public static string SerializeVector3s(IList<Vector3> vector3s)
+		{
+			return SerializeMany<Vector3>(vector3s, SerializeVector3);
+		}
+
+		public static IList<Vector3> DeserializeVector3s(string serialized)
+		{
+			return DeserializeMany<Vector3>(serialized, DeserializeVector3);
+		}
+		#endregion
 		
 		#region To and from Objects
 		public static string SerializeToString (object target)
