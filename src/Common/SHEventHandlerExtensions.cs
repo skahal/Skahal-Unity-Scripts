@@ -21,10 +21,7 @@ namespace Skahal.Common
 		/// </param>
 		public static void Raise (this EventHandler handler, object sender)
 		{
-			if (handler != null)
-			{
-				handler (sender, EventArgs.Empty);
-			}
+            RaiseToEnabledSubscribers(handler, sender, EventArgs.Empty);
 		}
 		
 		/// <summary>
@@ -45,11 +42,28 @@ namespace Skahal.Common
 		public static void Raise<TEventArgs> (this EventHandler<TEventArgs> handler, object sender, TEventArgs e) 
 			where TEventArgs : EventArgs
 		{
-			if (handler != null)
-			{
-				handler (sender, e);
-			}
-		}
+            RaiseToEnabledSubscribers(handler, sender, e);
+        }
+
+        private static void RaiseToEnabledSubscribers(MulticastDelegate handler, object sender, EventArgs e)
+        {
+            if (handler != null)
+            {
+                var subscribers = handler.GetInvocationList();
+
+                foreach (var s in subscribers)
+                {
+                    var eventSubscriber = s.Target as IEventSubscriber;
+
+                    if (eventSubscriber != null && !eventSubscriber.enabled)
+                    {
+                        continue;
+                    }
+
+                    s.DynamicInvoke(sender, e);
+                }
+            }
+        }
 		#endregion
 	}
 }
