@@ -1,5 +1,6 @@
 #region Usings
 using System;
+using System.Reflection;
 #endregion
 
 namespace Skahal.Common
@@ -60,7 +61,14 @@ namespace Skahal.Common
                         continue;
                     }
 
-                    s.DynamicInvoke(sender, e);
+                    try
+                    {
+                        s.DynamicInvoke(sender, e);
+                    }
+                    catch(TargetInvocationException ex)
+                    {
+                        throw ex.InnerException;
+                    }
                 }
             }
         }
