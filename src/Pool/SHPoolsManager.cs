@@ -49,7 +49,7 @@ public class SHPoolsManager : MonoBehaviour
 		
       foreach (SHPoolBase p in pools)
       {
-			AddPool (p);
+		AddPool (p, false);
       }
    }
 
@@ -62,9 +62,19 @@ public class SHPoolsManager : MonoBehaviour
 		AddPool (pool);
 	}
 
-	private static void AddPool(SHPoolBase pool)
+	private static void AddPool(SHPoolBase pool, bool throwIfAlreadExists = true)
 	{
-		var goName = pool.Name + " pool";
+		var poolKey = pool.Name;
+
+		if (s_instance.m_pools.ContainsKey (poolKey)) {
+			if (throwIfAlreadExists) {
+				throw new ArgumentException ("The pool with name '{0}' already exists.".With (poolKey), "pool");
+			}
+
+			return;
+		}
+			
+		var goName = poolKey + " pool";
 
 		Transform container = s_instance.transform.FindChild (goName);
 
@@ -75,7 +85,8 @@ public class SHPoolsManager : MonoBehaviour
 		}
 
 		pool.SetContainer (container);
-		s_instance.m_pools.Add (pool.Name, pool);
+
+		s_instance.m_pools.Add (poolKey, pool);
 		s_instance.StartCoroutine (pool.CreateObjects ());
 	}
 	
