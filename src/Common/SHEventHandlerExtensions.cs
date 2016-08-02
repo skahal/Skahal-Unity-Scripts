@@ -1,6 +1,7 @@
 #region Usings
 using System;
 using System.Reflection;
+using Skahal.Logging;
 #endregion
 
 namespace Skahal.Common
@@ -22,11 +23,11 @@ namespace Skahal.Common
 		/// </param>
 		public static void Raise (this EventHandler handler, object sender)
 		{
-            RaiseToEnabledSubscribers(handler, sender, EventArgs.Empty);
+            RaiseToEnabledSubscribers(handler, sender, EventArgs.Empty, null);
 		}
-		
-		/// <summary>
-		/// Raise the event.
+
+        /// <summary>
+		/// Raise event and with a TargetInvocationException is catched it will not throw an exception, but it will log it and continue to next item on invocation list.
 		/// </summary>
 		/// <param name='handler'>
 		/// Handler.
@@ -34,19 +35,48 @@ namespace Skahal.Common
 		/// <param name='sender'>
 		/// Sender.
 		/// </param>
-		/// <param name='e'>
-		/// E.
-		/// </param>
-		/// <typeparam name='TEventArgs'>
-		/// The 1st type parameter.
-		/// </typeparam>
-		public static void Raise<TEventArgs> (this EventHandler<TEventArgs> handler, object sender, TEventArgs e) 
-			where TEventArgs : EventArgs
-		{
-            RaiseToEnabledSubscribers(handler, sender, e);
+		public static void RaiseSafe(this EventHandler handler, object sender, ISHLogStrategy log)
+        {
+            RaiseToEnabledSubscribers(handler, sender, EventArgs.Empty, log);
         }
 
-        private static void RaiseToEnabledSubscribers(MulticastDelegate handler, object sender, EventArgs e)
+        /// <summary>
+        /// Raise the event.
+        /// </summary>
+        /// <param name='handler'>
+        /// Handler.
+        /// </param>
+        /// <param name='sender'>
+        /// Sender.
+        /// </param>
+        /// <param name='e'>
+        /// E.
+        /// </param>
+        /// <typeparam name='TEventArgs'>
+        /// The 1st type parameter.
+        /// </typeparam>
+        public static void Raise<TEventArgs> (this EventHandler<TEventArgs> handler, object sender, TEventArgs e) 
+			where TEventArgs : EventArgs
+		{
+            RaiseToEnabledSubscribers(handler, sender, e, null);
+        }
+
+        /// <summary>
+		/// Raise event and with a TargetInvocationException is catched it will not throw an exception, but it will log it and continue to next item on invocation list.
+		/// </summary>
+		/// <param name='handler'>
+		/// Handler.
+		/// </param>
+		/// <param name='sender'>
+		/// Sender.
+		/// </param>
+		public static void RaiseSafe<TEventArgs>(this EventHandler<TEventArgs> handler, object sender, TEventArgs e, ISHLogStrategy log)
+            where TEventArgs : EventArgs
+        {
+            RaiseToEnabledSubscribers(handler, sender, e, log);
+        }
+
+        private static void RaiseToEnabledSubscribers(MulticastDelegate handler, object sender, EventArgs e, ISHLogStrategy log)
         {
             if (handler != null)
             {
@@ -67,7 +97,14 @@ namespace Skahal.Common
                     }
                     catch(TargetInvocationException ex)
                     {
-                        throw ex.InnerException;
+                        if (log == null)
+                        {
+                            throw ex.InnerException;
+                        }
+                        else
+                        {
+                            log.Debug("Error invoke event handler: {0}", ex.InnerException.Message);
+                        }
                     }
                 }
             }
