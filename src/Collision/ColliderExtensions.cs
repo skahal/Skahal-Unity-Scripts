@@ -17,9 +17,13 @@ namespace UnityEngine
 		/// </returns>
 		public static bool IsVisibleFrom (this Collider collider, UnityEngine.Camera camera)
 		{
-			Plane[] planes = GeometryUtility.CalculateFrustumPlanes (camera);
+			if (collider.enabled) {
+				Plane[] planes = GeometryUtility.CalculateFrustumPlanes (camera);
 
-			return GeometryUtility.TestPlanesAABB (planes, collider.bounds);
+				return GeometryUtility.TestPlanesAABB (planes, collider.bounds);
+			}
+
+			return false;
 		}
 	}
 }
