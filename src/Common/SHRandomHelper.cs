@@ -1,6 +1,7 @@
 ﻿#region Usings
 using UnityEngine;
 using System.Linq;
+using System.Globalization;
 #endregion
 
 namespace Skahal.Common
@@ -81,6 +82,41 @@ namespace Skahal.Common
             
             return values[Random.Range(0, values.Length)];
         }
+
+		/// <summary>
+		/// Generates a random enum value
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>The enum value.</returns>
+		/// <exception cref="System.ArgumentException">TEnum must be an enumerated type</exception>
+		public static TEnum NextEnum<TEnum>(TEnum firstValue, TEnum lastValue)
+			where TEnum : struct, System.IConvertible
+		{
+			var enumType = typeof(TEnum);
+
+			if (!enumType.IsEnum)
+			{
+				throw new System.ArgumentException("TEnum must be an enumerated type");
+			}
+
+			var values = System.Enum.GetValues(enumType).Cast<TEnum>().ToArray();
+			var firstValueInt = firstValue.ToInt32(CultureInfo.InvariantCulture);
+			var lastValueInt = lastValue.ToInt32(CultureInfo.InvariantCulture);
+
+			return values[Random.Range(firstValueInt, lastValueInt)];
+		}
+
+		/// <summary>
+		/// Generates a random enum value
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the enum.</typeparam>
+		/// <returns>The enum value.</returns>
+		/// <exception cref="System.ArgumentException">TEnum must be an enumerated type</exception>
+		public static TEnum NextEnum<TEnum>(params TEnum[] values)
+			where TEnum : struct, System.IConvertible
+		{
+			return values[Random.Range(0, values.Length)];
+		}
 	    #endregion
 	}
 }
