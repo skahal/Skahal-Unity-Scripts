@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D1F95AB1-B370-4D85-8FBD-E30869E8ACF7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Skahal.Unity.Scripts</RootNamespace>
+    <AssemblyName>Skahal.Unity.Scripts</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\Buildron.ModSdk\references\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\IEventSubscriber.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BoolHelper.cs" />
+    <Compile Include="ColorHelper.cs" />
+    <Compile Include="GUIStyleStateHelper.cs" />
+    <Compile Include="GUITextureHelper.cs" />
+    <Compile Include="IntHelper.cs" />
+    <Compile Include="MaterialHelper.cs" />
+    <Compile Include="PerlinScript.cs" />
+    <Compile Include="QuaternionHelper.cs" />
+    <Compile Include="Reflection\ReflectionTypeLoadExceptionExtensions.cs" />
+    <Compile Include="SH.cs" />
+    <Compile Include="SHController.cs" />
+    <Compile Include="SHControllerBase.cs" />
+    <Compile Include="SHControllerWithStrategy.cs" />
+    <Compile Include="SHDevice.cs" />
+    <Compile Include="SHGUIText.cs" />
+    <Compile Include="SHInput.cs" />
+    <Compile Include="SHMonoBehaviourExtensions.cs" />
+    <Compile Include="SHRaycastHit.cs" />
+    <Compile Include="SHRect.cs" />
+    <Compile Include="SHScreen.cs" />
+    <Compile Include="SHScreenshotHelper.cs" />
+    <Compile Include="TimeHelper.cs" />
+    <Compile Include="Vector3Helper.cs" />
+    <Compile Include="Camera\SHCameraEffects.cs" />
+    <Compile Include="Camera\SHCameraHelper.cs" />
+    <Compile Include="Collision\ColliderExtensions.cs" />
+    <Compile Include="Common\SHEventHandlerExtensions.cs" />
+    <Compile Include="Common\SHGameInfo.cs" />
+    <Compile Include="Common\SHKeyValue.cs" />
+    <Compile Include="Common\SHKeyValueExtensions.cs" />
+    <Compile Include="Common\SHRandomHelper.cs" />
+    <Compile Include="Component\SHComponentHelper.cs" />
+    <Compile Include="Configuration\SHConfigManager.cs" />
+    <Compile Include="Data\IGameObjectDataHandler.cs" />
+    <Compile Include="Data\IGameObjectDataRepository.cs" />
+    <Compile Include="Data\ISHKeyValueStorageProvider.cs" />
+    <Compile Include="Data\SHGlobalServerKeyValueStorageProvider.cs" />
+    <Compile Include="Data\SHKeyValueStorageProvider.cs" />
+    <Compile Include="Data\SHSettingValueFailedEventArgs.cs" />
+    <Compile Include="Debugging\SHDebug.cs" />
+    <Compile Include="Debugging\SHLeakFinderScript.cs" />
+    <Compile Include="Effects\WireframeEffectController.cs" />
+    <Compile Include="Effects\WireframeEffectService.cs" />
+    <Compile Include="Environment\DayNightControllerScript.cs" />
+    <Compile Include="Environment\SHWaterController.cs" />
+    <Compile Include="ErrorHandling\SHError.cs" />
+    <Compile Include="GameObject\FloatingScript.cs" />
+    <Compile Include="GameObject\SHGameObjectExtensions.cs" />
+    <Compile Include="GameObject\SHGameObjectHelper.cs" />
+    <Compile Include="GameObject\SHLayerExtensions.cs" />
+    <Compile Include="GameObject\SHRotatorScript.cs" />
+    <Compile Include="GameObjects\SHGameObjectHelper.cs" />
+    <Compile Include="Globalization\SHGlobalization.cs" />
+    <Compile Include="Globalization\SHGlobalizationScript.cs" />
+    <Compile Include="Globalization\SHSpriteTextGlobalization.cs" />
+    <Compile Include="God\SH.cs" />
+    <Compile Include="HUD\ISHControlFinder.cs" />
+    <Compile Include="HUD\ISHHUDControlProxy.cs" />
+    <Compile Include="HUD\ISHHUDFactory.cs" />
+    <Compile Include="HUD\SHFPSHUDController.cs" />
+    <Compile Include="HUD\SHGUI.cs" />
+    <Compile Include="HUD\SHGUILayout.cs" />
+    <Compile Include="HUD\SHHUDControlProxyHolderBase.cs" />
+    <Compile Include="HUD\SHMenuControllerBase.cs" />
+    <Compile Include="HUD\SHResolutionManagerScript.cs" />
+    <Compile Include="Infrastructure\Framework\Commons\DependencyService.cs" />
+    <Compile Include="Infrastructure\Framework\Domain\AggregateRootBase.cs" />
+    <Compile Include="Infrastructure\Framework\Domain\EntityBase.cs" />
+    <Compile Include="Infrastructure\Framework\Domain\IAggregateRoot.cs" />
+    <Compile Include="Infrastructure\Framework\Domain\IEntity.cs" />
+    <Compile Include="Infrastructure\Framework\Repositories\IRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\GenericPlayerPrefsRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\PlayerPrefsRepositoryBase.cs" />
+    <Compile Include="IO\SHFileHelper.cs" />
+    <Compile Include="Logging\ISHLogStrategy.cs" />
+    <Compile Include="Logging\PrefixedLogStrategy.cs" />
+    <Compile Include="Logging\SHDebugLogStrategy.cs" />
+    <Compile Include="Logging\SHLog.cs" />
+    <Compile Include="Logging\SHReleaseLogStrategy.cs" />
+    <Compile Include="Materials\ScrollTextureScript.cs" />
+    <Compile Include="MemoryManagement\SHMemoryCleaner.cs" />
+    <Compile Include="MemoryManagement\SHMemoryCleaningController.cs" />
+    <Compile Include="Meshes\DeformMeshScript.cs" />
+    <Compile Include="Meshes\MeshShowHideScript.cs" />
+    <Compile Include="Messages\MessageReceiverScript.cs" />
+    <Compile Include="Messages\Messenger.cs" />
+    <Compile Include="Movies\SHScreenshotsMovieMakerScript.cs" />
+    <Compile Include="ParticleSystems\ParticleEmitterExtensions.cs" />
+    <Compile Include="ParticleSystems\TrainRendererExtensions.cs" />
+    <Compile Include="Pool\SHPoolBase.cs" />
+    <Compile Include="Pool\SHPoolsManager.cs" />
+    <Compile Include="Pool\SHPoolsManagerStatsHUDController.cs" />
+    <Compile Include="Pool\SHPrefabPool.cs" />
+    <Compile Include="Quality\SHGameObjectsQualityController.cs" />
+    <Compile Include="Reflection\SHReflection.cs" />
+    <Compile Include="Rendering\RendererExtensions.cs" />
+    <Compile Include="Serialization\SHSerializer.cs" />
+    <Compile Include="Sounds\AudioClipHelper.cs" />
+    <Compile Include="Sounds\AudioListenerHelper.cs" />
+    <Compile Include="Sounds\SHAudioSource.cs" />
+    <Compile Include="Sounds\SHSoundConfig.cs" />
+    <Compile Include="Testing\SHTestHelper.cs" />
+    <Compile Include="Text\StringHelper.cs" />
+    <Compile Include="Textures\SHTexture.cs" />
+    <Compile Include="Textures\Texture2DExtensions.cs" />
+    <Compile Include="Threading\CoroutineAsyncAction.cs" />
+    <Compile Include="Threading\CoroutineAsyncActionProvider.cs" />
+    <Compile Include="Threading\IAsyncAction.cs" />
+    <Compile Include="Threading\IAsyncActionProvider.cs" />
+    <Compile Include="Threading\SHCoroutine.cs" />
+    <Compile Include="Timing\SHChangeTimeByTouchesController.cs" />
+    <Compile Include="Timing\SHTouchesTimeScaleEntry.cs" />
+    <Compile Include="Transform\RotateScript.cs" />
+    <Compile Include="Transform\ScaleScript.cs" />
+    <Compile Include="Transform\SmoothFollow.cs" />
+    <Compile Include="Transform\SmoothLookAt.cs" />
+    <Compile Include="Transform\TransformHelper.cs" />
+    <Compile Include="Tweening\iTweenHelper.cs" />
+    <Compile Include="Tweening\iTweenHinting.cs" />
+    <Compile Include="Common\Throw.cs" />
+    <Compile Include="ISHController.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="Skahal.Unity.Scripts.Externals\Skahal.Unity.Scripts.Externals.csproj">
+      <Project>{AF958CBE-9458-434A-9FAA-0671995A2974}</Project>
+      <Name>Skahal.Unity.Scripts.Externals</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

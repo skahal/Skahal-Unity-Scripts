@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{893140C7-ACED-4DA4-975A-E04E868AAA84}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Skahal.Unity.Scripts.UnitTests</RootNamespace>
+    <AssemblyName>Skahal.Unity.Scripts.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\Buildron.ModSdk\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\Buildron.ModSdk\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Editor\UnitTests\Common\CustomStubEventArgs.cs" />
+    <Compile Include="Editor\UnitTests\Common\EventPublisherStub.cs" />
+    <Compile Include="Editor\UnitTests\Common\EventSubscriberStub.cs" />
+    <Compile Include="Editor\UnitTests\Common\SHRandomHelperTest.cs" />
+    <Compile Include="Editor\UnitTests\Common\SHEventHandlerExtensionsTest.cs" />
+    <Compile Include="Editor\UnitTests\Infrastructure\Repositories\EntityStub.cs" />
+    <Compile Include="Editor\UnitTests\Infrastructure\Repositories\GenericPlayerPrefsRepositoryTest.cs" />
+    <Compile Include="Editor\UnitTests\Infrastructure\Repositories\IEntityStub.cs" />
+    <Compile Include="Editor\UnitTests\Logging\PrefixedLogStrategyTest.cs" />
+    <Compile Include="Editor\UnitTests\Serialization\SHSerializerTest.cs" />
+    <Compile Include="Editor\UnitTests\Serialization\SerializationTargetStub.cs" />
+    <Compile Include="Editor\UnitTests\Text\StringHelperTest.cs" />
+    <Compile Include="Editor\UnitTests\Threading\CoroutineAsyncActionProviderTest.cs" />
+    <Compile Include="Editor\UnitTests\Common\ThrowTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Skahal.Unity.Scripts.csproj">
+      <Project>{D1F95AB1-B370-4D85-8FBD-E30869E8ACF7}</Project>
+      <Name>Skahal.Unity.Scripts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+</Project>
