@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pixelplacement\iTween\iTween.cs" />
     <Compile Include="Detonator Explosion Framework\Sample Supporting Emitters\DetonatorSprayHelper.cs" />
+    <Compile Include="UnityMainThreadDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Detonator Explosion Framework\Prefab Examples\Detonator-Base.prefab" />
