@@ -68,7 +68,7 @@ public class SHPrefabPool : SHPoolBase
    /// </param>
    protected override void DisableObject (GameObject goInPool)
    {
-      goInPool.SetActiveRecursively(false);
+      goInPool.SetActive(false);
    }
 
    /// <summary>
@@ -79,7 +79,7 @@ public class SHPrefabPool : SHPoolBase
    /// </param>
    protected override void EnableObject (GameObject goInPool)
    {
-      goInPool.SetActiveRecursively(true);
+      goInPool.SetActive(true);
    }
 
    /// <summary>
@@ -93,7 +93,7 @@ public class SHPrefabPool : SHPoolBase
    /// </param>
    protected override bool IsObjectEnabled (GameObject goInPool)
    {
-      return goInPool.active;
+      return goInPool.activeInHierarchy;
    }
    #endregion
 }
