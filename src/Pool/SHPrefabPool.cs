@@ -56,8 +56,7 @@ public class SHPrefabPool : SHPoolBase
    /// </returns>
    protected override GameObject CreateObject ()
    {
-      var go = (GameObject)Object.Instantiate (m_prefab, Vector3.zero, Quaternion.identity);
-      return go;
+      return (GameObject)Object.Instantiate (m_prefab, Vector3.zero, Quaternion.identity);
    }
 
    /// <summary>
