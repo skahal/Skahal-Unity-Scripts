@@ -132,7 +132,7 @@ public abstract class SHPoolBase : MonoBehaviour
 
 			if (go == null)
 			{
-				SHLog.Error("{0} - GameObject on index {1} is null. You should not call Destroy() in objects that are in a pool.", GetType().Name, i);
+				SHLog.Error("Pool: {0} - GameObject on index {1} is null. You should not call Destroy() in objects that are in a pool.", Name, i);
 			}
 
 			if (IsObjectEnabled(go))
