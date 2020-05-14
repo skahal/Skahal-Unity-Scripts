@@ -19,12 +19,12 @@ public class SHGUIText : MonoBehaviour
 
 	
 	#region ChangeFontSize
-	public static void ChangeFontSize(GUIText guiText, float firstDelay, float sizeDelay, int toFontSize)
+	public static void ChangeFontSize(UnityEngine.UI.Text guiText, float firstDelay, float sizeDelay, int toFontSize)
 	{
 		s_instance.StartCoroutine(DelayChangeFontSize(guiText, firstDelay, sizeDelay, toFontSize));
 	}
 
-	static IEnumerator DelayChangeFontSize(GUIText guiText, float firstDelay, float sizeDelay, int toFontSize)
+	static IEnumerator DelayChangeFontSize(UnityEngine.UI.Text guiText, float firstDelay, float sizeDelay, int toFontSize)
 	{
 		yield return new WaitForSeconds(firstDelay);
 	

@@ -107,19 +107,5 @@ namespace Skahal.Tweening
 		}
 
 		#endregion
-
-		#region Camera
-
-		public static void CameraFadeTo (params object[] argsKeyValue)
-		{
-			iTween.CameraFadeTo (CreateHashParams (argsKeyValue));
-		}
-
-		public static void CameraFadeFrom (params object[] argsKeyValue)
-		{
-			iTween.CameraFadeFrom (CreateHashParams (argsKeyValue));
-		}
-
-		#endregion
 	}
 }

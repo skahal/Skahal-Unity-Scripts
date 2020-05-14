@@ -76,7 +76,7 @@ public class SHPoolsManager : MonoBehaviour
 			
 		var goName = poolKey + " pool";
 
-		Transform container = s_instance.transform.FindChild (goName);
+		Transform container = s_instance.transform.Find (goName);
 
 		if (container == null)
 		{

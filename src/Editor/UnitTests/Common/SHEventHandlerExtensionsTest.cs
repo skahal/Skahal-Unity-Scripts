@@ -5,13 +5,13 @@ using Skahal.Common;
 
 namespace Skahal.Common.UnitTests
 {
-	[TestFixture]
+    [TestFixture]
     [Category("Common")]
-	public class SHEventHandlerExtensionsTest
+    public class SHEventHandlerExtensionsTest
     {
-		[Test]
-		public void Raise_EventEmptyEventArgs_EventRaisedOnlyOnEnabledMonoBehaviour()
-		{
+        [Test]
+        public void Raise_EventEmptyEventArgs_EventRaisedOnlyOnEnabledMonoBehaviour()
+        {
             var publisher = new EventPublisherStub();
             var subscriber1 = new EventSubscriberStub(publisher);
             var subscriber2 = new EventSubscriberStub(publisher);

@@ -39,7 +39,7 @@ public static class StringHelper
     /// <param name="minWordLength">The min word length to consider in acronim.</param>
     /// <param name="wordSeparators">The word separators. Default is space.</param>
     /// <returns>The acronum.</returns>
-   /// <exception cref="System.NotImplementedException"></exception>
+    /// <exception cref="System.NotImplementedException"></exception>
     public static string ToAcronym(this string value, int maxAcronymLength = 2, int minWordLength = 3, params string[] wordSeparators)
     {
         if (wordSeparators.Length == 0)
@@ -48,7 +48,7 @@ public static class StringHelper
         }
 
         return string.Join(
-            "",  
+            "",
             value
             .Split(wordSeparators, System.StringSplitOptions.RemoveEmptyEntries)
             .Where(w => w.Length >= minWordLength)
