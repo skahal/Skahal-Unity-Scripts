@@ -6,25 +6,25 @@ using Skahal.Logging;
 
 namespace Skahal.Common
 {
-	/// <summary>
-	/// Extensions methods for EventHandler.
-	/// </summary>
-	public static class SHEventHandlerExtensions
-	{
-		#region Methods
-		/// <summary>
-		/// Raise event.
-		/// </summary>
-		/// <param name='handler'>
-		/// Handler.
-		/// </param>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		public static void Raise (this EventHandler handler, object sender)
-		{
+    /// <summary>
+    /// Extensions methods for EventHandler.
+    /// </summary>
+    public static class SHEventHandlerExtensions
+    {
+        #region Methods
+        /// <summary>
+        /// Raise event.
+        /// </summary>
+        /// <param name='handler'>
+        /// Handler.
+        /// </param>
+        /// <param name='sender'>
+        /// Sender.
+        /// </param>
+        public static void Raise(this EventHandler handler, object sender)
+        {
             RaiseToEnabledSubscribers(handler, sender, EventArgs.Empty, null);
-		}
+        }
 
         /// <summary>
 		/// Raise event and with a TargetInvocationException is catched it will not throw an exception, but it will log it and continue to next item on invocation list.
@@ -55,9 +55,9 @@ namespace Skahal.Common
         /// <typeparam name='TEventArgs'>
         /// The 1st type parameter.
         /// </typeparam>
-        public static void Raise<TEventArgs> (this EventHandler<TEventArgs> handler, object sender, TEventArgs e) 
-			where TEventArgs : EventArgs
-		{
+        public static void Raise<TEventArgs>(this EventHandler<TEventArgs> handler, object sender, TEventArgs e)
+            where TEventArgs : EventArgs
+        {
             RaiseToEnabledSubscribers(handler, sender, e, null);
         }
 
@@ -95,7 +95,7 @@ namespace Skahal.Common
                     {
                         s.DynamicInvoke(sender, e);
                     }
-                    catch(TargetInvocationException ex)
+                    catch (TargetInvocationException ex)
                     {
                         if (log == null)
                         {
@@ -109,6 +109,6 @@ namespace Skahal.Common
                 }
             }
         }
-		#endregion
-	}
+        #endregion
+    }
 }

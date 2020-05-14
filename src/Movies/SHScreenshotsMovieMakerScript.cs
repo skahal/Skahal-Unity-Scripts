@@ -23,7 +23,7 @@ public class SHScreenshotsMovieMakerScript : MonoBehaviour
 	void Update ()
 	{
 		string name = string.Format ("{0}/{1:D04} shot.png", RootFolderPath, Time.frameCount);
-		Application.CaptureScreenshot (name);
+		ScreenCapture.CaptureScreenshot (name);
 	}
 	#endregion
 }

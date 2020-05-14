@@ -23,7 +23,7 @@ public class SHScreenshotHelper : MonoBehaviour
 		var fileName = Path.Combine (Application.persistentDataPath, "SHScreenshotHelper_TakeScreenshot.png");
 		SHFileHelper.DeleteIfExists (fileName);
 		
-		Application.CaptureScreenshot (fileName);
+		ScreenCapture.CaptureScreenshot (fileName);
 		
 		SHLog.Debug ("SHScreenshotHelper.TakeScreenshot: {0}", fileName);
 		

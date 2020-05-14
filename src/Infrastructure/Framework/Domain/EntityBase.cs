@@ -2,12 +2,12 @@
 
 namespace Skahal.Infrastructure.Framework.Domain
 {
-	/// <summary>
-	/// Base class for entities.
-	/// </summary>
-	[Serializable]
-	public abstract class EntityBase : IEntity
-	{
+    /// <summary>
+    /// Base class for entities.
+    /// </summary>
+    [Serializable]
+    public abstract class EntityBase : IEntity
+    {
         #region Properties		
         /// <summary>
         /// Gets or sets the id.
@@ -27,6 +27,6 @@ namespace Skahal.Infrastructure.Framework.Domain
                 return Id == 0;
             }
         }
-		#endregion
-	}
+        #endregion
+    }
 }
